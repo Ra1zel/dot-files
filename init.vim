@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
   
 inoremap jk <esc> 
@@ -14,7 +15,7 @@ hi cursorline cterm=underline gui=underline
 :set tabstop=2
 :set shiftwidth=2
 :set expandtab
-:set number
+:set relativenumber
 set mouse=a
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -33,9 +34,17 @@ if (empty($TMUX))
   endif
 endif
 
+" use <tab> for trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 let g:onedark_hide_endofbuffer=1
 set background = "dark"
 syntax on
-colorscheme onedark 
+colorscheme molokai 
