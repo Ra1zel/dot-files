@@ -1,8 +1,14 @@
+set nocompatible
+
 call plug#begin()
 Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
   
 inoremap jk <esc> 
@@ -11,6 +17,10 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
 hi cursorline cterm=underline gui=underline
 :set tabstop=2
 :set shiftwidth=2
